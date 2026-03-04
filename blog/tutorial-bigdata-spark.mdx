@@ -1,0 +1,170 @@
+---
+title: "Introducción a Big Data con Apache Spark y PySpark"
+description: "Aprende los conceptos fundamentales de Big Data y cómo procesar grandes volúmenes de datos con Apache Spark usando Python."
+sidebarTitle: "Big Data y Spark"
+icon: "bolt"
+date: "2025-07-10"
+author: "Carlos Eduardo Méndez"
+category: "tutoriales"
+keywords: ["big data", "apache spark", "pyspark", "procesamiento distribuido", "tutorial"]
+---
+
+Cuando los datos son demasiado grandes para caber en la memoria de una sola
+computadora, necesitas herramientas de procesamiento distribuido. Apache Spark
+es la más popular para este tipo de tareas. En este tutorial vas a conocer
+los conceptos básicos y escribir tu primer programa con PySpark.
+
+## ¿Cuándo necesitas Big Data?
+
+No siempre necesitas Spark. Esta tabla te ayuda a decidir:
+
+| Tamaño de datos | Herramienta recomendada |
+|---|---|
+| < 1 GB | Pandas (Python) |
+| 1 GB — 10 GB | Pandas con optimizaciones o Polars |
+| 10 GB — 1 TB | PySpark (local o cluster pequeño) |
+| > 1 TB | PySpark en cluster distribuido |
+
+<Note>
+  Estos umbrales son aproximados. Dependen de la complejidad de las operaciones
+  y los recursos disponibles. Si tu análisis implica joins complejos entre
+  múltiples tablas, podrías necesitar Spark con datasets más pequeños.
+</Note>
+
+## Instalar PySpark
+
+```bash
+pip install pyspark
+```
+
+Para ejecutar Spark necesitas tener Java 8 o 11 instalado:
+
+<CodeGroup>
+```bash Windows
+# Verificar versión de Java
+java -version
+
+# Si no tienes Java, instalar con winget
+winget install Oracle.JDK.17
+```
+
+```bash macOS/Linux
+# Verificar versión de Java
+java -version
+
+# Instalar con brew (macOS) o apt (Ubuntu)
+brew install openjdk@11
+# o
+sudo apt install openjdk-11-jdk
+```
+</CodeGroup>
+
+## Tu primer programa con PySpark
+
+```python
+from pyspark.sql import SparkSession
+
+# Crear una sesión de Spark
+spark = SparkSession.builder \
+    .appName("GEAB - Análisis censal") \
+    .master("local[*]") \
+    .getOrCreate()
+
+# Cargar un archivo CSV grande
+censo = spark.read.csv(
+    "datos_censo_nacional.csv",
+    header=True,
+    inferSchema=True
+)
+
+# Ver el esquema
+censo.printSchema()
+
+# Contar registros
+print(f"Total de registros: {censo.count()}")
+```
+
+La diferencia principal con Pandas es que Spark no carga todos los datos
+en memoria de inmediato. Las operaciones se definen como un plan de ejecución
+y se ejecutan solo cuando solicitas un resultado.
+
+## Transformaciones básicas
+
+```python
+from pyspark.sql import functions as F
+
+# Filtrar por departamento
+antioquia = censo.filter(F.col("departamento") == "Antioquia")
+
+# Agrupar y contar por municipio
+poblacion_municipio = antioquia.groupBy("municipio") \
+    .agg(
+        F.count("*").alias("total_registros"),
+        F.avg("edad").alias("edad_promedio")
+    ) \
+    .orderBy(F.desc("total_registros"))
+
+# Mostrar resultados
+poblacion_municipio.show(10)
+```
+
+<Tip>
+  Usa `F.col()` para referenciar columnas en lugar de strings directos.
+  Esto te da autocompletado en editores como VS Code y evita errores
+  difíciles de detectar.
+</Tip>
+
+## Lazy evaluation y planes de ejecución
+
+Spark distingue entre dos tipos de operaciones:
+
+- **Transformaciones** (lazy): `filter()`, `groupBy()`, `select()`. No se ejecutan
+  de inmediato, solo definen el plan.
+- **Acciones** (eager): `count()`, `show()`, `collect()`, `write()`. Estas disparan
+  la ejecución del plan completo.
+
+```python
+# Esto NO ejecuta nada, solo define el plan
+plan = censo.filter(F.col("edad") > 18) \
+    .groupBy("nivel_educativo") \
+    .count()
+
+# Esto SÍ ejecuta el plan completo
+plan.show()
+```
+
+Puedes ver el plan de ejecución con `explain()`:
+
+```python
+plan.explain(mode="formatted")
+```
+
+## Guardar resultados
+
+```python
+# Guardar como Parquet (formato eficiente para Big Data)
+poblacion_municipio.write \
+    .mode("overwrite") \
+    .parquet("output/poblacion_por_municipio")
+
+# Guardar como CSV
+poblacion_municipio.write \
+    .mode("overwrite") \
+    .option("header", True) \
+    .csv("output/poblacion_por_municipio_csv")
+```
+
+<Warning>
+  Spark escribe los resultados en particiones (múltiples archivos).
+  Si necesitas un solo archivo, usa `.coalesce(1)` antes de `.write`,
+  pero esto elimina el paralelismo y puede ser lento con datasets grandes.
+</Warning>
+
+## Próximos pasos
+
+Este tutorial cubre los fundamentos. Para ir más allá:
+
+- Aprende sobre particionamiento y optimización de queries
+- Explora Spark SQL para consultas con sintaxis SQL
+- Investiga Spark Structured Streaming para datos en tiempo real
+- Consulta la [bibliografía de Big Data](/references) para libros recomendados

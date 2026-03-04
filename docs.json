@@ -1,68 +1,99 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "name": "GEAB - Semillero de Investigación",
   "theme": "mint",
-  "name": "Mint Starter Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0EA5E9",
+    "light": "#38BDF8",
+    "dark": "#0284C7"
   },
   "favicon": "/favicon.svg",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "seo": {
+    "indexing": "all"
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentación",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Bienvenida",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "team",
+              "join-us"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Líneas de investigación",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "research-lines"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Proyectos",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "active-projects",
+              "completed-projects"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Publicaciones y artículos",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "research-papers",
+              "divulgation-articles",
+              "conference-papers"
+            ]
+          },
+          {
+            "group": "Menciones y reconocimientos",
+            "pages": [
+              "mentions"
+            ]
+          },
+          {
+            "group": "Recursos",
+            "pages": [
+              "tools",
+              "datasets",
+              "references"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Blog",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Noticias",
             "pages": [
-              "api-reference/introduction"
+              "blog/noticias-evento-inaugural",
+              "blog/noticias-nuevos-integrantes"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Tutoriales técnicos",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "blog/tutorial-python-pandas",
+              "blog/tutorial-bigdata-spark"
+            ]
+          },
+          {
+            "group": "Reflexiones",
+            "pages": [
+              "blog/reflexion-como-investigar",
+              "blog/reflexion-experiencia-semillero"
+            ]
+          },
+          {
+            "group": "Ciencia de datos explicada",
+            "pages": [
+              "blog/divulgacion-que-es-data-science",
+              "blog/divulgacion-ml-vida-cotidiana"
             ]
           }
         ]
@@ -71,52 +102,44 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "GitHub",
+          "href": "https://github.com/geab-semillero",
+          "icon": "github"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Contacto",
+          "href": "mailto:geab@universidad.edu.co",
+          "icon": "envelope"
         }
       ]
     }
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/company/geab"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Únete al semillero",
+      "href": "/join-us"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/geab-semillero",
+      "linkedin": "https://linkedin.com/company/geab",
+      "x": "https://x.com/geab_semillero"
     }
   }
 }

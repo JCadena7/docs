@@ -1,0 +1,128 @@
+---
+title: "Machine learning en la vida cotidiana: cómo los algoritmos aprenden de tus datos"
+description: "Descubre cómo el machine learning está presente en las apps que usas a diario, desde el filtro de spam hasta las recomendaciones de música."
+sidebarTitle: "ML en lo cotidiano"
+icon: "brain"
+date: "2025-10-20"
+author: "Diego Alejandro Vargas"
+category: "divulgacion"
+keywords: ["machine learning", "aprendizaje automático", "inteligencia artificial", "divulgación"]
+---
+
+Cada vez que abres tu correo y no ves spam, que Spotify te sugiere una canción
+que termina gustándote, o que tu teléfono desbloquea con tu cara, estás usando
+machine learning. Pero, ¿qué es y cómo funciona?
+
+## ¿Qué es machine learning?
+
+Machine learning (aprendizaje automático) es una rama de la inteligencia
+artificial donde los programas **aprenden patrones a partir de datos** en lugar
+de seguir instrucciones explícitas escritas por un programador.
+
+En la programación tradicional, un desarrollador escribe reglas:
+"si el correo contiene la palabra 'gratis' y viene de un remitente desconocido,
+márcalo como spam". Eso funciona para casos simples, pero los spammers cambian
+sus tácticas constantemente.
+
+Con machine learning, el enfoque es diferente: le das al programa miles de
+correos ya clasificados (spam y no-spam) y el algoritmo descubre por sí mismo
+qué patrones distinguen a uno del otro. Después, aplica esos patrones a correos
+nuevos que nunca ha visto.
+
+## Tres tipos de aprendizaje
+
+No todos los algoritmos de machine learning funcionan igual. Los tres tipos
+principales son:
+
+**Aprendizaje supervisado.** El algoritmo recibe datos etiquetados (ejemplos
+con la respuesta correcta) y aprende a predecir la etiqueta para datos nuevos.
+Ejemplo: clasificar correos como spam o no-spam usando miles de correos ya clasificados.
+
+**Aprendizaje no supervisado.** El algoritmo recibe datos sin etiquetas y busca
+estructuras o grupos por sí mismo. Ejemplo: agrupar clientes de un banco por
+comportamiento de gasto sin decirle de antemano cuántos grupos existen.
+
+**Aprendizaje por refuerzo.** El algoritmo aprende por prueba y error, recibiendo
+recompensas cuando acierta y penalizaciones cuando falla. Ejemplo: entrenar a una
+IA para que juegue ajedrez, donde ganar es la recompensa y perder la penalización.
+
+<Note>
+  La mayoría de aplicaciones de machine learning que usas a diario son
+  de aprendizaje supervisado. Es el tipo más común y el más fácil de entender.
+</Note>
+
+## Ejemplos en tu día a día
+
+### Filtro de spam
+
+Tu servicio de correo analiza cada mensaje entrante y lo clasifica como legítimo
+o spam. El modelo se entrenó con millones de correos etiquetados por usuarios
+que marcaron mensajes como spam. Con el tiempo, el modelo aprende nuevos patrones
+de spam que los programadores nunca habrían escrito como reglas explícitas.
+
+### Recomendaciones de música
+
+Spotify usa varios modelos de machine learning en paralelo. Uno analiza qué
+canciones escuchas y las compara con las de usuarios con gustos similares
+(filtrado colaborativo). Otro analiza las características de audio de cada canción
+— ritmo, energía, tono — para encontrar canciones nuevas que suenen parecidas
+a las que ya te gustan (análisis de contenido).
+
+### Reconocimiento facial
+
+Cuando tu teléfono te reconoce para desbloquearse, un modelo de machine learning
+compara la imagen que captura la cámara con una representación matemática de tu
+rostro que se creó cuando configuraste el desbloqueo por primera vez. El modelo
+puede reconocerte con gafas, sin gafas, con diferente iluminación o ángulo,
+porque aprendió a identificar los rasgos que te hacen único.
+
+### Traducción automática
+
+Google Translate y DeepL usan modelos de deep learning (una subcategoría de
+machine learning) entrenados con millones de traducciones humanas. Estos modelos
+no traducen palabra por palabra: entienden el contexto de una oración completa
+y generan la traducción más probable en el idioma destino.
+
+## ¿Cómo "aprende" un algoritmo?
+
+El proceso es más matemático de lo que parece intuitivo, pero la idea
+central es simple:
+
+1. El algoritmo recibe datos de entrenamiento (por ejemplo, 10.000 fotos de gatos
+   y 10.000 fotos de perros, cada una con su etiqueta)
+2. Internamente, ajusta miles de parámetros numéricos que controlan sus decisiones
+3. Compara sus predicciones con las respuestas correctas
+4. Calcula el error (cuántas veces se equivocó)
+5. Ajusta sus parámetros para reducir el error
+6. Repite los pasos 3 a 5 miles o millones de veces
+
+Después de ese proceso, el modelo puede recibir una foto nueva que nunca vio
+y predecir si es un gato o un perro con alta precisión.
+
+<Tip>
+  La calidad de las predicciones depende directamente de la calidad y cantidad
+  de los datos de entrenamiento. Un modelo entrenado con datos sesgados
+  producirá predicciones sesgadas. Por eso, la ética de los datos es un tema
+  central en la ciencia de datos moderna.
+</Tip>
+
+## Limitaciones que debes conocer
+
+El machine learning no es magia. Tiene limitaciones reales:
+
+- **Necesita datos de calidad.** Si los datos tienen errores o sesgos, el modelo
+  aprende esos errores y sesgos.
+- **No explica "por qué".** Muchos modelos dicen "esto es spam" pero no explican
+  claramente qué lo hace spam. Eso es un problema en contextos donde las decisiones
+  deben ser justificables (créditos, salud, justicia).
+- **No generaliza automáticamente.** Un modelo entrenado para detectar fraude
+  en un banco colombiano no necesariamente funciona bien en un banco argentino
+  sin re-entrenamiento.
+
+## ¿Quieres profundizar?
+
+- Consulta las [líneas de investigación de GEAB](/research-lines) para ver
+  cómo aplicamos machine learning en nuestros proyectos
+- Lee la sección de [bibliografía](/references) para libros introductorios
+  sobre el tema
+- Explora nuestros [proyectos activos](/active-projects) que usan estas técnicas

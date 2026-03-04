@@ -1,0 +1,144 @@
+---
+title: "Análisis de datos con Python y Pandas: guía práctica"
+description: "Aprende los fundamentos del análisis de datos con Python usando Pandas. Tutorial paso a paso con ejemplos usando un dataset real de educación."
+sidebarTitle: "Python y Pandas"
+icon: "code"
+date: "2025-06-20"
+author: "Diego Alejandro Vargas"
+category: "tutoriales"
+keywords: ["python", "pandas", "análisis de datos", "tutorial", "dataframe"]
+---
+
+Pandas es la biblioteca más usada en Python para manipulación y análisis de datos.
+En este tutorial vas a aprender los conceptos fundamentales trabajando con un dataset
+real de rendimiento académico universitario.
+
+## Antes de empezar
+
+Necesitas tener Python 3.8+ instalado y las siguientes bibliotecas:
+
+```bash
+pip install pandas matplotlib
+```
+
+## Cargar los datos
+
+Vamos a trabajar con un archivo CSV que contiene registros de estudiantes
+con sus calificaciones por semestre.
+
+```python
+import pandas as pd
+
+# Cargar datos de rendimiento académico
+estudiantes = pd.read_csv("rendimiento_academico.csv")
+
+# Ver las primeras filas
+print(estudiantes.head())
+```
+
+El dataset tiene estas columnas:
+- `id_estudiante`: identificador único
+- `programa`: programa académico
+- `semestre`: semestre cursado (1 a 10)
+- `promedio`: promedio ponderado del semestre
+- `creditos`: número de créditos matriculados
+- `estado`: activo, graduado o retirado
+
+## Exploración inicial
+
+Antes de cualquier análisis, necesitas entender la estructura de los datos:
+
+```python
+# Dimensiones del dataset
+print(f"Filas: {estudiantes.shape[0]}, Columnas: {estudiantes.shape[1]}")
+
+# Tipos de datos
+print(estudiantes.dtypes)
+
+# Estadísticas descriptivas
+print(estudiantes.describe())
+
+# Valores faltantes por columna
+print(estudiantes.isnull().sum())
+```
+
+<Tip>
+  La función `describe()` te da un resumen rápido de las columnas numéricas:
+  conteo, media, desviación estándar, mínimo, máximo y percentiles.
+  Para columnas categóricas, usa `describe(include='object')`.
+</Tip>
+
+## Filtrar y seleccionar datos
+
+Pandas permite filtrar filas usando condiciones y seleccionar
+columnas específicas de forma intuitiva:
+
+```python
+# Estudiantes de Ingeniería de Sistemas con promedio mayor a 4.0
+ing_sistemas = estudiantes[
+    (estudiantes["programa"] == "Ingeniería de Sistemas") &
+    (estudiantes["promedio"] > 4.0)
+]
+
+print(f"Estudiantes filtrados: {len(ing_sistemas)}")
+
+# Seleccionar solo algunas columnas
+resumen = estudiantes[["programa", "semestre", "promedio"]]
+```
+
+## Agrupar y agregar
+
+La función `groupby()` es una de las más útiles de Pandas. Te permite
+agrupar datos por una o más columnas y calcular estadísticas sobre cada grupo:
+
+```python
+# Promedio de calificaciones por programa
+promedio_programa = estudiantes.groupby("programa")["promedio"].mean()
+promedio_programa = promedio_programa.sort_values(ascending=False)
+
+print(promedio_programa)
+```
+
+```python
+# Múltiples estadísticas por programa y semestre
+resumen_detallado = estudiantes.groupby(["programa", "semestre"]).agg(
+    promedio_mean=("promedio", "mean"),
+    promedio_std=("promedio", "std"),
+    total_estudiantes=("id_estudiante", "count")
+).reset_index()
+
+print(resumen_detallado.head(10))
+```
+
+## Visualizar resultados
+
+Pandas se integra con Matplotlib para crear gráficos de forma directa:
+
+```python
+import matplotlib.pyplot as plt
+
+# Gráfico de barras: promedio por programa
+promedio_programa.plot(kind="barh", figsize=(10, 6), color="#0EA5E9")
+plt.xlabel("Promedio")
+plt.ylabel("Programa")
+plt.title("Promedio de calificaciones por programa académico")
+plt.tight_layout()
+plt.savefig("promedio_por_programa.png", dpi=150)
+plt.show()
+```
+
+<Note>
+  `plt.tight_layout()` ajusta automáticamente los márgenes del gráfico
+  para que las etiquetas no se corten. Es una buena práctica incluirlo
+  antes de guardar o mostrar cualquier gráfico.
+</Note>
+
+## Próximos pasos
+
+Con estos fundamentos puedes abordar la mayoría de tareas de análisis exploratorio.
+Para profundizar, te recomendamos:
+
+- Aprende a manejar fechas con `pd.to_datetime()` y análisis de series temporales
+- Explora `pivot_table()` para tablas dinámicas
+- Usa `merge()` y `join()` para combinar datasets
+- Consulta la sección de [herramientas del semillero](/tools) para ver qué más usamos

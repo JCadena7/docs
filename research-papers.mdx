@@ -1,0 +1,57 @@
+---
+title: "Artículos de investigación"
+description: "Publicaciones académicas revisadas por pares producidas por el semillero GEAB."
+sidebarTitle: "Artículos"
+icon: "book-open"
+keywords: ["publicaciones", "artículos", "papers", "investigación", "GEAB"]
+---
+
+{/* TODO: Reemplazar con publicaciones reales del semillero */}
+
+Estas son las publicaciones académicas producidas por integrantes de GEAB
+en revistas indexadas y con revisión por pares.
+
+| Título | Autores | Año | Revista | DOI |
+|---|---|---|---|---|
+| Modelos predictivos de deserción universitaria en Colombia | Torres, M.A.; Vargas, D.A.; Gómez, S. | 2024 | Revista de Analítica Educativa | 10.1234/rae.2024.001 |
+| Análisis de sentimientos en Twitter durante elecciones locales | Herrera, C.A.; López, M.F. | 2024 | Revista Colombiana de Computación | 10.1234/rcc.2024.015 |
+| Procesamiento distribuido de datos censales con Apache Spark | Méndez, C.E.; Moreno, J.P. | 2023 | Ingeniería y Ciencia | 10.1234/ic.2023.042 |
+| Detección de noticias falsas en español mediante NLP | Herrera, C.A.; Ramírez, A.F. | 2023 | Procesamiento del Lenguaje Natural | 10.1234/pln.2023.008 |
+
+---
+
+## Resúmenes
+
+<AccordionGroup>
+  <Accordion title="Modelos predictivos de deserción universitaria en Colombia (2024)">
+    Este estudio propone un modelo de machine learning basado en gradient boosting
+    para predecir la probabilidad de deserción en estudiantes de pregrado colombianos.
+    Se utilizaron datos históricos de 12.000 estudiantes durante un período de cinco años.
+    El modelo alcanzó un AUC de 0.89 y permitió identificar los factores de mayor
+    incidencia: rendimiento en primer semestre, estrato socioeconómico y modalidad
+    de ingreso. Los resultados fueron validados con datos de un semestre posterior,
+    confirmando la capacidad predictiva del modelo en producción.
+  </Accordion>
+  <Accordion title="Análisis de sentimientos en Twitter durante elecciones locales (2024)">
+    Se desarrolló un clasificador de sentimientos para tweets en español
+    sobre candidatos en elecciones municipales colombianas. El corpus incluyó
+    85.000 tweets recopilados durante tres meses de campaña electoral.
+    Se compararon modelos basados en TF-IDF + SVM contra transformers (BETO),
+    obteniendo un F1-score de 0.82 con el modelo transformer. El análisis
+    reveló patrones de polarización asociados a eventos específicos de campaña.
+  </Accordion>
+  <Accordion title="Procesamiento distribuido de datos censales con Apache Spark (2023)">
+    Este trabajo presenta una arquitectura de procesamiento distribuido para
+    analizar microdatos del censo nacional colombiano. Se implementó un pipeline
+    en PySpark que reduce el tiempo de procesamiento de 48 horas (local) a
+    2.5 horas (cluster de 4 nodos). El artículo documenta las decisiones de
+    diseño, particionamiento de datos y optimizaciones aplicadas.
+  </Accordion>
+  <Accordion title="Detección de noticias falsas en español mediante NLP (2023)">
+    Se construyó un corpus de 15.000 noticias en español etiquetadas como
+    verdaderas o falsas, recopiladas de medios latinoamericanos. Se entrenó
+    un clasificador basado en features lingüísticas y embeddings contextuales.
+    El modelo final alcanzó un accuracy de 87% y se publicó como herramienta
+    de código abierto en el repositorio del semillero.
+  </Accordion>
+</AccordionGroup>

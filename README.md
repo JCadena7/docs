@@ -1,55 +1,76 @@
-# Mintlify Starter Kit
+# GEAB — Sitio de documentación del semillero
 
-Use the starter kit to get your docs deployed and ready to customize.
+Sitio web oficial del **Grupo de Estudios en Analítica y Big Data (GEAB)**,
+construido con [Mintlify](https://mintlify.com).
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## Requisitos
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+- [Node.js](https://nodejs.org) v18 o superior
+- [Mintlify CLI](https://mintlify.com/docs)
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
-
-## AI-assisted writing
-
-Set up your AI coding tool to work with Mintlify:
+## Instalación
 
 ```bash
-npx skills add https://mintlify.com/docs
-```
-
-This command installs Mintlify's documentation skill for your configured AI tools like Claude Code, Cursor, Windsurf, and others. The skill includes component reference, writing standards, and workflow guidance.
-
-See the [AI tools guides](/ai-tools) for tool-specific setup.
-
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
-
-```
+# Instalar la CLI de Mintlify
 npm i -g mint
+
+# Clonar el repositorio
+git clone https://github.com/geab-semillero/docs.git
+cd docs
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+## Desarrollo local
 
-```
+```bash
+# Iniciar el servidor de desarrollo
 mint dev
 ```
 
-View your local preview at `http://localhost:3000`.
+El sitio estará disponible en [http://localhost:3000](http://localhost:3000).
 
-## Publishing changes
+## Verificación
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+```bash
+# Verificar links rotos
+mint broken-links
 
-## Need help?
+# Validar estructura del sitio
+mint validate
 
-### Troubleshooting
+# Verificar accesibilidad
+mint a11y
+```
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+## Estructura del proyecto
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+```
+docs/
+├── docs.json                # Configuración del sitio
+├── favicon.svg              # Favicon
+├── logo/                    # Logos light/dark
+├── images/                  # Imágenes estáticas
+├── snippets/                # Componentes reutilizables
+├── index.mdx                # Página principal
+├── team.mdx                 # Equipo
+├── join-us.mdx              # Únete al semillero
+├── research-lines.mdx       # Líneas de investigación
+├── active-projects.mdx      # Proyectos activos
+├── completed-projects.mdx   # Proyectos completados
+├── research-papers.mdx      # Artículos de investigación
+├── divulgation-articles.mdx # Artículos divulgativos
+├── conference-papers.mdx    # Ponencias
+├── mentions.mdx             # Menciones y reconocimientos
+├── tools.mdx                # Herramientas
+├── datasets.mdx             # Conjuntos de datos
+├── references.mdx           # Bibliografía
+└── blog/                    # Posts del blog
+```
+
+## Despliegue
+
+Mintlify despliega automáticamente al hacer push a la rama conectada
+en el [Dashboard de Mintlify](https://dashboard.mintlify.com).
+
+## Licencia
+
+MIT
